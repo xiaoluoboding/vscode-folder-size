@@ -10,14 +10,14 @@ import { getHumanReadableSize } from './utils';
 const { window, workspace } = vscode;
 
 let myStatusBarItem: vscode.StatusBarItem;
-let [fileSize, dirSize] = ['', ''];
+let [fileSize, dirSize, dirInfo] = ['', '', { total: 0, count: 0 }];
 
 export function activate({ subscriptions }: vscode.ExtensionContext) {
 	// register a command that is invoked when the status bar
 	// item is selected
 	const myCommandId = 'sample.showSelectionCount';
 	subscriptions.push(vscode.commands.registerCommand(myCommandId, () => {
-		vscode.window.showInformationMessage(`File Size is: ${fileSize}٩(◕‿◕｡)۶`);
+		vscode.window.showInformationMessage(`Folder has ${dirInfo.count} files with a total of [${dirSize}]`);
 	}));
 
 	// create a new status bar item that we can now manage
@@ -96,15 +96,15 @@ async function getDirSize () {
 	const folderPath = posix.dirname(fileUri.path);
 	const folderUri = fileUri.with({ path: folderPath });
 
-	const info = await countAndTotalOfFilesInFolder(folderUri);
+	dirInfo = await countAndTotalOfFilesInFolder(folderUri);
 	/* open new text document */
 	// const doc = await workspace.openTextDocument({ content: `${info.count} files in ${folderUri.toString(true)} with a total of ${info.total} bytes` });
 	// vscode.window.showTextDocument(doc, { viewColumn: vscode.ViewColumn.Beside });
 
-	if (info) {
-		dirSize = getHumanReadableSize(info.total);
+	if (dirInfo) {
+		dirSize = getHumanReadableSize(dirInfo.total);
 		// window.showInformationMessage(`${info.count} files in ${folderUri.toString(true)} with a total of ${dirSize}`);
-		window.showInformationMessage(`${info.count} files with a total of ${info.total} Bytes [${dirSize}]`);
+		// window.showInformationMessage(`${dirInfo.count} files with a total of ${dirInfo.total} Bytes [${dirSize}]`);
 		// myStatusBarItem.text = `$(file-directory) ${dirSize}`;
 		// myStatusBarItem.show();
 	}

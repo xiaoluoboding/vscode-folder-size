@@ -3,13 +3,14 @@
  *--------------------------------------------------------*/
 
 import * as vscode from 'vscode';
+import { posix } from 'path';
 
 import { getHumanReadableSize } from './utils';
 
 const { window, workspace } = vscode;
 
 let myStatusBarItem: vscode.StatusBarItem;
-let fileSize = '';
+let [fileSize, dirSize] = ['', ''];
 
 export function activate({ subscriptions }: vscode.ExtensionContext) {
 	// register a command that is invoked when the status bar
@@ -59,11 +60,52 @@ async function getFileSize(doc: vscode.TextDocument): Promise<void>  {
 
 		if (fsStat.size > 0) {
 			fileSize = getHumanReadableSize(fsStat.size);
-			window.showInformationMessage(`${fileSize}`);
+			// window.showInformationMessage(`${fileSize}`);
 			myStatusBarItem.text = `$(file-code) ${fileSize}`;
 			myStatusBarItem.show();
+			getDirSize();
 		}
 	} catch {
 		myStatusBarItem.hide();
+	}
+}
+
+
+async function countAndTotalOfFilesInFolder(folder: vscode.Uri): Promise<{ total: number, count: number }> {
+	let total = 0;
+	let count = 0;
+
+	for (const [name, type] of await vscode.workspace.fs.readDirectory(folder)) {
+		if (type === vscode.FileType.File) {
+			const filePath = posix.join(folder.path, name);
+			const stat = await vscode.workspace.fs.stat(folder.with({ path: filePath }));
+			total += stat.size;
+			count += 1;
+		}
+	}
+
+	return { total, count };
+}
+
+async function getDirSize () {
+	if (!window.activeTextEditor) {
+		return window.showInformationMessage('Open a file first');
+	}
+	const fileUri = window.activeTextEditor.document.uri;
+
+	const folderPath = posix.dirname(fileUri.path);
+	const folderUri = fileUri.with({ path: folderPath });
+
+	const info = await countAndTotalOfFilesInFolder(folderUri);
+	/* open new text document */
+	// const doc = await workspace.openTextDocument({ content: `${info.count} files in ${folderUri.toString(true)} with a total of ${info.total} bytes` });
+	// vscode.window.showTextDocument(doc, { viewColumn: vscode.ViewColumn.Beside });
+
+	if (info) {
+		dirSize = getHumanReadableSize(info.total);
+		// window.showInformationMessage(`${info.count} files in ${folderUri.toString(true)} with a total of ${dirSize}`);
+		window.showInformationMessage(`${info.count} files with a total of ${info.total} Bytes [${dirSize}]`);
+		// myStatusBarItem.text = `$(file-directory) ${dirSize}`;
+		// myStatusBarItem.show();
 	}
 }

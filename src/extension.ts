@@ -14,7 +14,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	const myCommandId = 'sample.showSelectionCount';
 	subscriptions.push(vscode.commands.registerCommand(myCommandId, () => {
 		const n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
-		vscode.window.showInformationMessage(`Yeah, ${n} line(s) selected... Keep going!`);
+		vscode.window.showInformationMessage(`Yeah, ${n} line(s) selected... ٩(◕‿◕｡)۶`);
 	}));
 
 	// create a new status bar item that we can now manage

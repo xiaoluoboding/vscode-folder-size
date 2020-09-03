@@ -1,7 +1,7 @@
 {
-	"name": "status-ts",
-	"displayName": "Selected Line Numbers",
-	"description": "Shows the number of selected lines in the status bar",
+	"name": "vscode-project-size",
+	"displayName": "Project Size",
+	"description": "Shows the current file / dir size in the status bar",
 	"version": "0.0.1",
 	"publisher": "xiaoluoboding",
 	"repository": {

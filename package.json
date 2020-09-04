@@ -1,6 +1,6 @@
 {
-	"name": "vscode-folder-size",
-	"displayName": "Folder Size",
+	"name": "vscode-directory-size",
+	"displayName": "Directory Size",
 	"description": "Shows the current file | directory size in the status bar",
 	"version": "0.0.1",
 	"publisher": "xiaoluoboding",

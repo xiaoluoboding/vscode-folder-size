@@ -1,2 +1,3 @@
-# vscode-project-size
-Project / Repository Size Package for Visual Studio Code
+# VSCode Directory Size
+
+Shows the current file | directory size in the status bar for Visual Studio Code.

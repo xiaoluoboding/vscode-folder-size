@@ -1,15 +1,15 @@
 {
-	"name": "vscode-directory-size",
-	"displayName": "Directory Size",
-	"description": "Shows the current file | directory size in the status bar",
+	"name": "vscode-folder-size",
+	"displayName": "Folder Size",
+	"description": "Shows the current file | folder size in the status bar",
 	"version": "0.0.1",
 	"publisher": "xiaoluoboding",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "https://github.com/xiaoluoboding/vscode-folder-size"
 	},
 	"bugs": {
-		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
+		"url": "https://github.com/xiaoluoboding/vscode-folder-size/issues"
 	},
 	"engines": {
 		"vscode": "^1.48.0"
@@ -21,6 +21,19 @@
 		"*"
 	],
 	"main": "./out/extension.js",
+	"contributes": {
+		"configuration": [{
+			"title": "Folder Size Configuration",
+			"properties": {
+				"folder-size.ignoreFolders": {
+					"type": "string",
+					"default": "node_modules|.git",
+					"description": "The Folders Won't Count up",
+					"scope": "resource"
+				}
+			}
+		}]
+	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",

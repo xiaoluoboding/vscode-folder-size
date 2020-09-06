@@ -4,6 +4,7 @@
 	"description": "Shows the current file | folder size in the status bar",
 	"version": "0.0.1",
 	"publisher": "xiaoluoboding",
+	"icon": "images/logo.png",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/xiaoluoboding/vscode-folder-size"

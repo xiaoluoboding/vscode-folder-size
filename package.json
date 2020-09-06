@@ -28,7 +28,7 @@
 				"folder-size.ignoreFolders": {
 					"type": "string",
 					"default": "node_modules|.git",
-					"description": "The Folders Won't Count up",
+					"description": "The Folders Not Counting",
 					"scope": "resource"
 				}
 			}

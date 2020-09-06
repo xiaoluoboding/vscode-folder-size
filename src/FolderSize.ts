@@ -81,6 +81,8 @@ export class FolderSize implements vscode.Disposable {
   private resetFolderInfo(): Promise<folderSizeMeta> {
     return new Promise((resolve) => {
       this.folderInfo = { total: 0, count: 0 }
+      this.fileSize = ''
+      this.folderSize = ''
       this.folderMap = new Map()
       resolve(this.folderInfo)
     })
@@ -107,15 +109,14 @@ export class FolderSize implements vscode.Disposable {
 
   private async countAndTotalOfFilesInFolder( folder: vscode.Uri ): Promise<folderSizeMeta> {
     for (const [name, type] of await workspace.fs.readDirectory(folder)) {
-      if (this.folderMap.has(name)) continue
-      
       if (type === vscode.FileType.File) {
-        // oc.appendLine(JSON.stringify(name))
-        // oc.appendLine(JSON.stringify(folder))
         const filePath = posix.join(folder.path, name)
         const fileUri = folder.with({ path: filePath })
 
-        this.folderMap.set(name, fileUri)
+        if (this.folderMap.has(fileUri.path)) continue
+        
+        // this._oc.appendLine(JSON.stringify(name) + ': ' + JSON.stringify(fileUri))
+        this.folderMap.set(fileUri.path, fileUri)
 
         const stat = await workspace.fs.stat(fileUri)
         this.folderInfo.total += stat.size
@@ -131,7 +132,9 @@ export class FolderSize implements vscode.Disposable {
         const folderPath = posix.join(folder.path, name)
         const folderUri = folder.with({ path: folderPath })
 
-        this.folderMap.set(name, folderUri)
+        if (this.folderMap.has(folderUri.path)) continue
+
+        this.folderMap.set(folderUri.path, folderUri)
 
         // this._oc.appendLine(JSON.stringify(name) + ': ' + JSON.stringify(folderUri))
 
@@ -156,6 +159,6 @@ export class FolderSize implements vscode.Disposable {
   }
 
   private stop(): void {
-    console.log('stop counting')
+    this.sbi.hide()
   }
 }

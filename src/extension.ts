@@ -11,9 +11,13 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
     folderSize.showInformation()
 	})
 	
-	const changeFile = vscode.workspace.onDidChangeTextDocument((e) =>
-    folderSize.getFileSize(e.document)
-	)
+	// const changeFile = vscode.workspace.onDidChangeTextDocument((e) =>
+  //   folderSize.getFileSize(e.document)
+	// )
+
+	const saveFile = vscode.workspace.onDidSaveTextDocument((document) =>
+    folderSize.getFileSize(document)
+  )
 	
 	const openFile = vscode.workspace.onDidOpenTextDocument((document) =>
     folderSize.getFileSize(document)
@@ -22,6 +26,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	// register some listener that make sure the status bar item always up-to-date
 	subscriptions.push(folderSize.sbi)
 	subscriptions.push(showInformation)
-	subscriptions.push(changeFile)
+	// subscriptions.push(changeFile)
+	subscriptions.push(saveFile)
 	subscriptions.push(openFile)
 }

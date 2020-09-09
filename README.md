@@ -4,7 +4,7 @@
 
 ## Usage
 
-Select the code file(TextDocument), Plugin will counting [file | folder] size.
+Select the code file(TextDocument), Extension will counting [file | folder] size.
 
 ![preview](./images/preview.gif)
 
@@ -18,6 +18,6 @@ The Folders Not Counting, default is: `"node_modules|.git"`
 }
 ```
 
-## Lisence
+## License
 
 MIT [@xiaoluoboding](https://github.com/xiaoluoboding)

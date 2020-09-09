@@ -2,7 +2,7 @@
 	"name": "vscode-folder-size",
 	"displayName": "Folder Size",
 	"description": "Shows the current file | folder size in the status bar",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "xiaoluoboding",
 	"icon": "images/logo.png",
 	"repository": {

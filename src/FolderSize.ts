@@ -74,16 +74,20 @@ export class FolderSize implements vscode.Disposable {
     }
   }
 
+  private initData(): void {
+    this.folderInfo = { total: 0, count: 0 }
+    this.fileSize = ''
+    this.folderSize = ''
+    this.folderMap = new Map()
+  }
+
   private initialize(): void {
     this._config = Utility.getConfiguration(Constants.pluginName)
   }
 
   private resetFolderInfo(): Promise<folderSizeMeta> {
     return new Promise((resolve) => {
-      this.folderInfo = { total: 0, count: 0 }
-      this.fileSize = ''
-      this.folderSize = ''
-      this.folderMap = new Map()
+      this.initData()
       resolve(this.folderInfo)
     })
   }
@@ -159,6 +163,7 @@ export class FolderSize implements vscode.Disposable {
   }
 
   private stop(): void {
+    this.initData()
     this.sbi.hide()
   }
 }

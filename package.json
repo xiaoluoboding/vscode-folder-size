@@ -2,7 +2,7 @@
 	"name": "vscode-folder-size",
 	"displayName": "Folder Size",
 	"description": "Shows the current file | folder size in the status bar",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "xiaoluoboding",
 	"icon": "images/logo.png",
 	"repository": {
@@ -40,7 +40,8 @@
 		"compile": "tsc -p ./",
 		"lint": "eslint . --ext .ts,.tsx",
 		"watch": "tsc -watch -p ./",
-		"package": "vsce package"
+		"package": "vsce package",
+		"changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
 	},
 	"devDependencies": {
 		"@types/node": "^14.6.3",

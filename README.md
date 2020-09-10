@@ -9,9 +9,17 @@
 
 ## Usage
 
-Select the code file(TextDocument), Extension will counting [file | folder] size.
+### Counting [File | Folder] Size 
+
+Select / Save the code file(TextDocument), Extension will counting [file | folder] size.
 
 ![preview](./images/preview.gif)
+
+### Counting Number of Files in Folder
+
+Click The [File | Folder] Status Bar, Extension will show you the number of files in the folder.
+
+![files-number](./images/files-number.png)
 
 ## Configuration
 
@@ -22,6 +30,10 @@ The Folders Not Counting, default is: `"node_modules|.git"`
   "folder-size.ignoreFolders": "node_modules|.git"
 }
 ```
+
+## Changelog
+
+[CHANGELOG](./CHANGELOG.md)
 
 ## License
 

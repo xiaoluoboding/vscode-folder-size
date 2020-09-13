@@ -1,3 +1,7 @@
+# [0.1.0](https://github.com/xiaoluoboding/vscode-folder-size/compare/v0.0.3...v0.1.0) (2020-09-13)
+
+
+
 ## [0.0.3](https://github.com/xiaoluoboding/vscode-folder-size/compare/v0.0.2...v0.0.3) (2020-09-10)
 
 

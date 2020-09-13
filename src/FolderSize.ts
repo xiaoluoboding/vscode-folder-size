@@ -38,7 +38,7 @@ export class FolderSize implements vscode.Disposable {
   }
 
   public dispose() {
-    this.stop()
+    this.reset()
   }
 
   public showInformation(): void {
@@ -162,8 +162,9 @@ export class FolderSize implements vscode.Disposable {
     window.showInformationMessage(JSON.stringify(uri))
   }
 
-  private stop(): void {
+  private reset(): void {
     this.initData()
-    this.sbi.hide()
+    this.sbi.text = `$(file-code) 0 | $(file-directory) 0`
+    // this.sbi.hide()
   }
 }

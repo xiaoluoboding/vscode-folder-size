@@ -1,4 +1,9 @@
-# [0.1.0](https://github.com/xiaoluoboding/vscode-folder-size/compare/v0.0.3...v0.1.0) (2020-09-13)
+# [0.1.0](https://github.com/xiaoluoboding/vscode-folder-size/compare/v0.0.3...v0.1.0) (2020-09-14)
+
+
+### Features
+
+* avoid flickering when closing file ([5f0465b](https://github.com/xiaoluoboding/vscode-folder-size/commit/5f0465b1b97804728e14aae6cf78e9132fb78988))
 
 
 

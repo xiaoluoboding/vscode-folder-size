@@ -19,8 +19,8 @@ export class FolderSize implements vscode.Disposable {
   public sbi: vscode.StatusBarItem
 
   private folderInfo: folderSizeMeta
-  private fileSize: String
-  private folderSize: String
+  private fileSize: string
+  private folderSize: string
   private folderMap: Map<string, vscode.Uri>
 
   constructor() {
@@ -92,7 +92,7 @@ export class FolderSize implements vscode.Disposable {
     })
   }
 
-  private async getFolderSize(): Promise<String> {
+  private async getFolderSize(): Promise<string> {
     if (!window.activeTextEditor) {
       return ''
     }
